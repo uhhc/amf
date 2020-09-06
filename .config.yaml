@@ -1,0 +1,8 @@
+#LOG_LEVEL: "debug"
+#LOG_FILE: "/tmp/amf.log"
+DB_ENGINE: "mysql"
+DB_USER: "root"
+DB_PASSWORD: "123456"
+DB_NAME: "amf"
+DB_HOST: "127.0.0.1"
+DB_PORT: "8306"

@@ -1,0 +1,17 @@
+version: "2"
+services:
+  database:
+    image: mysql:5.7
+    ports:
+      - 8306:3306
+    volumes:
+      - ./data/mysql/dev:/etc/mysql/mysql.conf.d
+      # 需要提前在宿主机创建好并且给777权限
+      - ~/data/mysql/logs:/var/log/mysql
+      # 需要提前在宿主机创建好并且给777权限
+      - ~/data/mysql/data:/data/mysql/data
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin123456"
+      MYSQL_DATABASE: "amf"
+      MYSQL_USER: "amfuser"
+      MYSQL_PASSWORD: "123456"

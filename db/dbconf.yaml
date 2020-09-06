@@ -1,0 +1,5 @@
+driver: ${DB_ENGINE}
+# pg params to see: https://godoc.org/github.com/lib/pq
+# mysql params to see: https://github.com/go-sql-driver/mysql#usage
+# mysql dsn format: username:password@protocol(address)/dbname
+dsn: ${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}?charset=utf8mb4&parseTime=True&loc=Local

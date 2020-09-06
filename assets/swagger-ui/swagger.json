@@ -1,0 +1,430 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "V1 API",
+        "title": "AMF API",
+        "contact": {},
+        "license": {},
+        "version": "v1"
+    },
+    "host": "127.0.0.1",
+    "basePath": "/",
+    "paths": {
+        "/v1/examples": {
+            "get": {
+                "description": "该接口提供样例列表的API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "样例"
+                ],
+                "summary": "获取样例列表",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "样例名称",
+                        "name": "example_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页展示数量",
+                        "name": "page_size",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "第几页",
+                        "name": "page_num",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取列表成功",
+                        "schema": {
+                            "$ref": "#/definitions/example.ListResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "获取失败",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "该接口提供创建样例的API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "样例"
+                ],
+                "summary": "创建一个样例",
+                "parameters": [
+                    {
+                        "description": "要创建的样例的具体信息。通过 request body 发送",
+                        "name": "example",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Example"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "创建成功",
+                        "schema": {
+                            "$ref": "#/definitions/example.CreateResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "创建失败",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/examples/{example_ids}": {
+            "delete": {
+                "description": "该接口提供删除一个或多个样例的API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "样例"
+                ],
+                "summary": "删除一个或多个样例",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "样例ID或ID列表，用英文逗号分隔。通过 URL Path 发送",
+                        "name": "example_ids",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "删除成功",
+                        "schema": {
+                            "$ref": "#/definitions/example.DeleteResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "删除失败",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/examples/{example_id}": {
+            "get": {
+                "description": "该接口提供查看某个样例详情的API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "样例"
+                ],
+                "summary": "获取某个样例详情",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "样例ID。通过 URL Path 发送",
+                        "name": "example_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "$ref": "#/definitions/example.GetResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "获取失败",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "该接口提供更新样例的API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "样例"
+                ],
+                "summary": "更新一个样例",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "样例ID。通过 URL Path 发送",
+                        "name": "example_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "要更新的样例的具体信息。通过 request body 发送",
+                        "name": "example",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Example"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "更新成功",
+                        "schema": {
+                            "$ref": "#/definitions/example.UpdateResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "更新失败",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/examples/{example_id}/status": {
+            "put": {
+                "description": "该接口提供更新某个样例状态的API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "样例"
+                ],
+                "summary": "更新某个样例状态",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "样例ID。通过 URL Path 发送",
+                        "name": "example_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "要修改的样例的状态。通过 request body 发送",
+                        "name": "status",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "更新成功",
+                        "schema": {
+                            "$ref": "#/definitions/example.ChangeStatusResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "更新失败",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "example.ChangeStatusResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object"
+                },
+                "header": {
+                    "type": "object",
+                    "$ref": "#/definitions/response.Header"
+                }
+            }
+        },
+        "example.CreateResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object"
+                },
+                "header": {
+                    "type": "object",
+                    "$ref": "#/definitions/response.Header"
+                }
+            }
+        },
+        "example.DeleteResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object"
+                },
+                "header": {
+                    "type": "object",
+                    "$ref": "#/definitions/response.Header"
+                }
+            }
+        },
+        "example.GetResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object",
+                    "$ref": "#/definitions/repository.Example"
+                },
+                "header": {
+                    "type": "object",
+                    "$ref": "#/definitions/response.Header"
+                }
+            }
+        },
+        "example.ListResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object",
+                    "$ref": "#/definitions/repository.ExampleList"
+                },
+                "header": {
+                    "type": "object",
+                    "$ref": "#/definitions/response.Header"
+                }
+            }
+        },
+        "example.UpdateResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object"
+                },
+                "header": {
+                    "type": "object",
+                    "$ref": "#/definitions/response.Header"
+                }
+            }
+        },
+        "repository.Example": {
+            "type": "object",
+            "properties": {
+                "create_time": {
+                    "description": "创建时间",
+                    "type": "string",
+                    "example": "2019-11-26 11:55:50"
+                },
+                "example_id": {
+                    "description": "样例ID",
+                    "type": "string",
+                    "example": "d3e62fac-27cd-45e6-83c3-826c519f7f7b"
+                },
+                "example_name": {
+                    "description": "样例名称",
+                    "type": "string",
+                    "example": "example_name"
+                },
+                "id": {
+                    "description": "主键",
+                    "type": "integer",
+                    "example": 1
+                },
+                "status": {
+                    "description": "样例状态",
+                    "type": "string",
+                    "example": "Pending"
+                }
+            }
+        },
+        "repository.ExampleList": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "description": "总数",
+                    "type": "integer",
+                    "example": 100
+                },
+                "data": {
+                    "description": "数据列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.Example"
+                    }
+                }
+            }
+        },
+        "response.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object"
+                },
+                "header": {
+                    "type": "object",
+                    "$ref": "#/definitions/response.FailureHeader"
+                }
+            }
+        },
+        "response.FailureHeader": {
+            "type": "object",
+            "properties": {
+                "err_msg": {
+                    "type": "string",
+                    "example": "请求参数错误"
+                },
+                "err_no": {
+                    "type": "integer",
+                    "example": 1003
+                }
+            }
+        },
+        "response.Header": {
+            "type": "object",
+            "properties": {
+                "err_msg": {
+                    "type": "string",
+                    "example": "success"
+                },
+                "err_no": {
+                    "type": "integer",
+                    "example": 200
+                }
+            }
+        }
+    }
+}

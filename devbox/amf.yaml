@@ -1,0 +1,24 @@
+version: "2"
+services:
+  amf:
+    image: hub.docker.com/uhhc/amf:latest
+    command: [ "/workspace/amf", "serve" ]
+    ports:
+    - 80:80
+    volumes:
+    - ~/.kube/kind-config-kind:/root/.kube/config
+    environment:
+      DB_ENGINE: mysql
+      DB_NAME: amf
+      DB_USER: root
+      DB_PASSWORD: "123456"
+      DB_HOST: "192.168.100.100"
+      DB_PORT: 8306
+      MONGODB_USER:
+      MONGODB_PASSWORD:
+      MONGODB_HOST: "192.168.100.100"
+      MONGODB_PORT: 27017
+      MONGODB_DBNAME: "amf"
+      IN_CLUSTER: "false"
+      KUBECONFIG: /root/.kube/config
+      MOUNT_DIR: "/data/dataset"
